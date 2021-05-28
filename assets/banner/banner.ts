@@ -1,4 +1,4 @@
-import { _decorator, Component, Node } from 'cc';
+import { _decorator, Component } from 'cc';
 import { Console } from '../prefabs/console';
 const { ccclass, property } = _decorator;
 
@@ -7,17 +7,17 @@ export class Banner extends Component {
   @property({ type: Console })
   console: Console = null!;
 
-  private bannerAd: tradplus.BannerAd | null = null;
+  private banner: tradplus.Banner | null = null;
 
   loadAd() {
-    if (this.bannerAd) {
+    if (this.banner) {
       this.console.log('Banner Ad already exists, reload Ad');
     } else {
       this.console.log('Load Ad');
 
-      this.bannerAd = new tradplus.BannerAd('A24091715B4FCD50C0F2039A5AF7C4BB');
+      this.banner = new tradplus.Banner('A24091715B4FCD50C0F2039A5AF7C4BB');
 
-      this.bannerAd.setAdListener({
+      this.banner.setAdListener({
         onAdLoaded: (adInfo: tradplus.AdInfo) => {
           this.console.log('onAdLoaded, adInfo:', adInfo);
         },
@@ -56,38 +56,38 @@ export class Banner extends Component {
       });
     }
 
-    this.bannerAd.loadAd();
+    this.banner.loadAd();
   }
 
   toggleVisibility() {
-    if (!this.ensureBannerAd()) return;
-    if (!this.bannerAd) return; // Make compiler happy
+    if (!this.ensureBanner()) return;
+    if (!this.banner) return; // Make compiler happy
 
     this.console.log('Toggle Visibility');
-    this.bannerAd.visible = !this.bannerAd.visible;
-    this.console.log('visible:', this.bannerAd.visible);
+    this.banner.visible = !this.banner.visible;
+    this.console.log('visible:', this.banner.visible);
   }
 
   switchPosition() {
-    if (!this.ensureBannerAd()) return;
-    if (!this.bannerAd) return; // Make compiler happy
+    if (!this.ensureBanner()) return;
+    if (!this.banner) return; // Make compiler happy
 
     this.console.log('Switch Position');
-    if (this.bannerAd.position === 'top') this.bannerAd.position = 'bottom';
-    else this.bannerAd.position = 'top';
+    if (this.banner.position === 'top') this.banner.position = 'bottom';
+    else this.banner.position = 'top';
   }
 
   destroyAd() {
-    if (!this.ensureBannerAd()) return;
-    if (!this.bannerAd) return; // Make compiler happy
+    if (!this.ensureBanner()) return;
+    if (!this.banner) return; // Make compiler happy
 
     this.console.log('Destroy Ad');
-    this.bannerAd.destroyAd();
-    this.bannerAd = null;
+    this.banner.destroyAd();
+    this.banner = null;
   }
 
-  ensureBannerAd(): boolean {
-    if (!this.bannerAd) {
+  ensureBanner(): boolean {
+    if (!this.banner) {
       this.console.log('Please press the "Load Ad" button first');
       return false;
     }
@@ -95,6 +95,6 @@ export class Banner extends Component {
   }
 
   onDestroy() {
-    this.bannerAd?.destroyAd();
+    this.banner?.destroyAd();
   }
 }
