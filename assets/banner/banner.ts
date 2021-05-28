@@ -12,60 +12,66 @@ export class Banner extends Component {
   loadAd() {
     if (this.banner) {
       this.console.log('Banner Ad already exists, reload Ad');
-    } else {
-      this.console.log('Load Ad');
-
-      this.banner = new tradplus.Banner('A24091715B4FCD50C0F2039A5AF7C4BB');
-
-      this.banner.setAdListener({
-        onAdLoaded: (adInfo: tradplus.AdInfo) => {
-          this.console.log('onAdLoaded, adInfo:', adInfo);
-        },
-
-        onAdClicked: (adInfo: tradplus.AdInfo) => {
-          this.console.log('onAdClicked, adInfo:', adInfo);
-        },
-
-        onAdImpression: (adInfo: tradplus.AdInfo) => {
-          this.console.log('onAdImpression, adInfo:', adInfo);
-        },
-
-        onAdShowFailed: (
-          adError: tradplus.AdError,
-          adInfo: tradplus.AdInfo
-        ) => {
-          this.console.log(
-            'onAdShowFailed, adError:',
-            adError,
-            'adInfo:',
-            adInfo
-          );
-        },
-
-        onAdLoadFailed: (adError: tradplus.AdError) => {
-          this.console.log('onAdLoadFailed, adError:', adError);
-        },
-
-        onAdClosed: (adInfo: tradplus.AdInfo) => {
-          this.console.log('onAdClosed, adInfo:', adInfo);
-        },
-
-        onBannerRefreshed: () => {
-          this.console.log('onBannerRefreshed');
-        },
-      });
+      this.banner.loadAd();
+      return;
     }
+
+    this.console.log('Load Ad');
+
+    this.banner = new tradplus.Banner('A24091715B4FCD50C0F2039A5AF7C4BB');
+
+    this.banner.setAdListener({
+      onAdLoaded: (adInfo: tradplus.AdInfo) => {
+        this.console.log('onAdLoaded, adInfo:', adInfo);
+      },
+
+      onAdClicked: (adInfo: tradplus.AdInfo) => {
+        this.console.log('onAdClicked, adInfo:', adInfo);
+      },
+
+      onAdImpression: (adInfo: tradplus.AdInfo) => {
+        this.console.log('onAdImpression, adInfo:', adInfo);
+      },
+
+      onAdShowFailed: (adError: tradplus.AdError, adInfo: tradplus.AdInfo) => {
+        this.console.log(
+          'onAdShowFailed, adError:',
+          adError,
+          'adInfo:',
+          adInfo
+        );
+      },
+
+      onAdLoadFailed: (adError: tradplus.AdError) => {
+        this.console.log('onAdLoadFailed, adError:', adError);
+      },
+
+      onAdClosed: (adInfo: tradplus.AdInfo) => {
+        this.console.log('onAdClosed, adInfo:', adInfo);
+      },
+
+      onBannerRefreshed: () => {
+        this.console.log('onBannerRefreshed');
+      },
+    });
 
     this.banner.loadAd();
   }
 
-  toggleVisibility() {
+  hideBanner() {
     if (!this.ensureBanner()) return;
     if (!this.banner) return; // Make compiler happy
 
-    this.console.log('Toggle Visibility');
-    this.banner.visible = !this.banner.visible;
-    this.console.log('visible:', this.banner.visible);
+    this.console.log('Hide Banner');
+    this.banner.setVisibility(false);
+  }
+
+  showBanner() {
+    if (!this.ensureBanner()) return;
+    if (!this.banner) return; // Make compiler happy
+
+    this.console.log('Show Banner');
+    this.banner.setVisibility(true);
   }
 
   switchPosition() {
