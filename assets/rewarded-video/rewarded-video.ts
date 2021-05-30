@@ -14,7 +14,10 @@ export class RewardedVideo extends Component {
 
     const adUnitId = '39DAC7EAC046676C5404004A311D1DB1';
 
-    this.rewardedVideo = new tradplus.RewardedVideo(adUnitId, true);
+    this.rewardedVideo = tradplus.tradPlusService.getRewardedVideo(
+      adUnitId,
+      true
+    );
 
     this.rewardedVideo.entryAdScenario('177010A4403105');
 

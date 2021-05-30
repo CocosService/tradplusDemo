@@ -8,17 +8,22 @@ export class Banner extends Component {
   console: Console = null!;
 
   private banner: tradplus.Banner | null = null;
+  private lastAdPosition: tradplus.BannerPosition = 'top';
 
   loadAd() {
     if (this.banner) {
-      this.console.log('Banner Ad already exists, reload Ad');
-      this.banner.loadAd();
+      this.console.log('Banner Ad already exists, reload Ad in new position');
+      if (this.lastAdPosition == 'top') this.lastAdPosition = 'bottom';
+      else this.lastAdPosition = 'top';
+      this.banner.loadAd(this.lastAdPosition);
       return;
     }
 
     this.console.log('Load Ad');
 
-    this.banner = new tradplus.Banner('A24091715B4FCD50C0F2039A5AF7C4BB');
+    this.banner = tradplus.tradPlusService.getBanner(
+      'A24091715B4FCD50C0F2039A5AF7C4BB'
+    );
 
     this.banner.setAdListener({
       onAdLoaded: (adInfo: tradplus.AdInfo) => {
@@ -55,7 +60,7 @@ export class Banner extends Component {
       },
     });
 
-    this.banner.loadAd();
+    this.banner.loadAd(this.lastAdPosition);
   }
 
   hideBanner() {
@@ -72,15 +77,6 @@ export class Banner extends Component {
 
     this.console.log('Show Banner');
     this.banner.setVisibility(true);
-  }
-
-  switchPosition() {
-    if (!this.ensureBanner()) return;
-    if (!this.banner) return; // Make compiler happy
-
-    this.console.log('Switch Position');
-    if (this.banner.position === 'top') this.banner.position = 'bottom';
-    else this.banner.position = 'top';
   }
 
   destroyAd() {

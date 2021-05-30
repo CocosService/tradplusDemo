@@ -14,7 +14,10 @@ export class Interstitial extends Component {
 
     const adUnitId = 'E609A0A67AF53299F2176C3A7783C46D';
 
-    this.interstitial = new tradplus.Interstitial(adUnitId, true);
+    this.interstitial = tradplus.tradPlusService.getInterstitial(
+      adUnitId,
+      true
+    );
 
     this.interstitial.entryAdScenario('01EAD2CCED1870');
 
