@@ -1,4 +1,5 @@
 import { _decorator, Component } from 'cc';
+import { isAndroid } from '../libs/os';
 import { Console } from '../prefabs/console';
 const { ccclass, property } = _decorator;
 
@@ -21,9 +22,11 @@ export class Banner extends Component {
 
     this.console.log('Load Ad');
 
-    this.banner = tradplus.tradPlusService.getBanner(
-      'A24091715B4FCD50C0F2039A5AF7C4BB'
-    );
+    const adUnitId = isAndroid()
+      ? 'A24091715B4FCD50C0F2039A5AF7C4BB'
+      : '6008C47DF1201CC875F2044E88FCD287';
+
+    this.banner = tradplus.tradPlusService.getBanner(adUnitId);
 
     this.banner.setAdListener({
       onAdLoaded: (adInfo: tradplus.AdInfo) => {

@@ -1,4 +1,5 @@
 import { _decorator, Component } from 'cc';
+import { isAndroid } from '../libs/os';
 import { Console } from '../prefabs/console';
 const { ccclass, property } = _decorator;
 
@@ -12,14 +13,16 @@ export class RewardedVideo extends Component {
   start() {
     this.console.log('Setup Rewarded Video...');
 
-    const adUnitId = '39DAC7EAC046676C5404004A311D1DB1';
+    const adUnitId = isAndroid()
+      ? '39DAC7EAC046676C5404004A311D1DB1'
+      : '160AFCDF01DDA48CCE0DBDBE69C8C669';
 
     this.rewardedVideo = tradplus.tradPlusService.getRewardedVideo(
       adUnitId,
       true
     );
 
-    this.rewardedVideo.entryAdScenario('177010A4403105');
+    // this.rewardedVideo.entryAdScenario('177010A4403105');
 
     const customMap = {
       user_gender: 'male',

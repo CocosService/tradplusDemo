@@ -1,4 +1,5 @@
 import { _decorator, Component } from 'cc';
+import { isAndroid } from '../libs/os';
 import { Console } from '../prefabs/console';
 const { ccclass, property } = _decorator;
 
@@ -12,14 +13,16 @@ export class Interstitial extends Component {
   start() {
     this.console.log('Setup Interstitial Ad...');
 
-    const adUnitId = 'E609A0A67AF53299F2176C3A7783C46D';
+    const adUnitId = isAndroid()
+      ? 'E609A0A67AF53299F2176C3A7783C46D'
+      : '063265866B93A4C6F93D1DDF7BF7329B';
 
     this.interstitial = tradplus.tradPlusService.getInterstitial(
       adUnitId,
       true
     );
 
-    this.interstitial.entryAdScenario('01EAD2CCED1870');
+    // this.interstitial.entryAdScenario('01EAD2CCED1870');
 
     const customMap = {
       user_gender: 'male',
