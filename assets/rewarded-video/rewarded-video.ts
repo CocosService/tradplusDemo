@@ -32,9 +32,17 @@ export class RewardedVideo extends Component {
     // App Scope, for all placement.
     // tradplus.tradPlusService.initCustomMap(customMap);
     // Only for the specify placement, override the App scope's one.
+    // NOTE: Currently, this API only work on Android.
     tradplus.tradPlusService.initPlacementCustomMap(adUnitId, customMap);
 
     this.rewardedVideo.setAdListener({
+      onAdAllLoaded: (anyAdsLoadSucceeded: boolean) => {
+        this.console.log(
+          'onAdAllLoaded, anyAdsLoadSucceeded:',
+          anyAdsLoadSucceeded
+        );
+      },
+
       onAdLoaded: (adInfo: tradplus.AdInfo) => {
         this.console.log('onAdLoaded, adInfo:', adInfo);
       },
@@ -51,6 +59,11 @@ export class RewardedVideo extends Component {
         this.console.log('onAdFailed, adError:', adError);
       },
 
+      // iOS only
+      onAdPlayFailed: (adError: tradplus.AdError) => {
+        this.console.log('onAdPlayFailed, adError:', adError);
+      },
+
       onAdClosed: (adInfo: tradplus.AdInfo) => {
         this.console.log('onAdClosed, adInfo:', adInfo);
       },
@@ -58,16 +71,18 @@ export class RewardedVideo extends Component {
       onAdReward: (adInfo: tradplus.AdInfo) => {
         this.console.log('onAdReward, adInfo:', adInfo);
       },
-    });
 
-    this.rewardedVideo.setAllAdLoadListener({
-      onAdAllLoaded: (anyAdsLoadSucceeded: boolean) => {
-        this.console.log(
-          'onAdAllLoaded, any Ads load succeeded?:',
-          anyAdsLoadSucceeded
-        );
+      // iOS only
+      onAdNotReward: (adInfo: tradplus.AdInfo) => {
+        this.console.log('onAdNotReward, adInfo:', adInfo);
       },
 
+      // Android only
+      oneLayerLoaded: (adInfo: tradplus.AdInfo) => {
+        this.console.log('oneLayerLoaded, adInfo:', adInfo);
+      },
+
+      // Android only
       oneLayerLoadFailed: (
         adError: tradplus.AdError,
         adInfo: tradplus.AdInfo
@@ -78,10 +93,6 @@ export class RewardedVideo extends Component {
           'adInfo:',
           adInfo
         );
-      },
-
-      oneLayerLoaded: (adInfo: tradplus.AdInfo) => {
-        this.console.log('oneLayerLoaded, adInfo:', adInfo);
       },
     });
   }

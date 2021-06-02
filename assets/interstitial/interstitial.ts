@@ -32,9 +32,17 @@ export class Interstitial extends Component {
     // App Scope, for all placement.
     // tradplus.tradPlusService.initCustomMap(customMap);
     // Only for the specify placement, override the App scope's one.
+    // NOTE: Currently, this API only work on Android.
     tradplus.tradPlusService.initPlacementCustomMap(adUnitId, customMap);
 
     this.interstitial.setAdListener({
+      onAdAllLoaded: (anyAdsLoadSucceeded: boolean) => {
+        this.console.log(
+          'onAdAllLoaded, anyAdsLoadSucceeded:',
+          anyAdsLoadSucceeded
+        );
+      },
+
       onAdLoaded: (adInfo: tradplus.AdInfo) => {
         this.console.log('onAdLoaded, adInfo:', adInfo);
       },
@@ -51,19 +59,21 @@ export class Interstitial extends Component {
         this.console.log('onAdFailed, adError:', adError);
       },
 
+      // iOS only
+      onAdPlayFailed: (adError: tradplus.AdError) => {
+        this.console.log('onAdPlayFailed, adError:', adError);
+      },
+
       onAdClosed: (adInfo: tradplus.AdInfo) => {
         this.console.log('onAdClosed, adInfo:', adInfo);
       },
-    });
 
-    this.interstitial.setAllAdLoadListener({
-      onAdAllLoaded: (anyAdsLoadSucceeded: boolean) => {
-        this.console.log(
-          'onAdAllLoaded, any Ads load succeeded?:',
-          anyAdsLoadSucceeded
-        );
+      // Android only
+      oneLayerLoaded: (adInfo: tradplus.AdInfo) => {
+        this.console.log('oneLayerLoaded, adInfo:', adInfo);
       },
 
+      // Android only
       oneLayerLoadFailed: (
         adError: tradplus.AdError,
         adInfo: tradplus.AdInfo
@@ -74,10 +84,6 @@ export class Interstitial extends Component {
           'adInfo:',
           adInfo
         );
-      },
-
-      oneLayerLoaded: (adInfo: tradplus.AdInfo) => {
-        this.console.log('oneLayerLoaded, adInfo:', adInfo);
       },
     });
   }

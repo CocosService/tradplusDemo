@@ -37,10 +37,16 @@ export class Banner extends Component {
         this.console.log('onAdClicked, adInfo:', adInfo);
       },
 
+      onAdLoadFailed: (adError: tradplus.AdError) => {
+        this.console.log('onAdLoadFailed, adError:', adError);
+      },
+
+      // Android only
       onAdImpression: (adInfo: tradplus.AdInfo) => {
         this.console.log('onAdImpression, adInfo:', adInfo);
       },
 
+      // Android only
       onAdShowFailed: (adError: tradplus.AdError, adInfo: tradplus.AdInfo) => {
         this.console.log(
           'onAdShowFailed, adError:',
@@ -50,14 +56,12 @@ export class Banner extends Component {
         );
       },
 
-      onAdLoadFailed: (adError: tradplus.AdError) => {
-        this.console.log('onAdLoadFailed, adError:', adError);
-      },
-
+      // Android only
       onAdClosed: (adInfo: tradplus.AdInfo) => {
         this.console.log('onAdClosed, adInfo:', adInfo);
       },
 
+      // Android only
       onBannerRefreshed: () => {
         this.console.log('onBannerRefreshed');
       },
