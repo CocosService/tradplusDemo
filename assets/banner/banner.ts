@@ -9,7 +9,7 @@ export class Banner extends Component {
   console: Console = null!;
 
   private banner: tradplus.Banner | null = null;
-  private lastAdPosition: tradplus.BannerPosition = 'top';
+  private lastAdPosition: 'top' | 'bottom' = 'top';
 
   loadAd() {
     if (this.banner) {
@@ -29,12 +29,12 @@ export class Banner extends Component {
     this.banner = tradplus.tradPlusService.getBanner(adUnitId);
 
     this.banner.setAdListener({
-      onAdLoaded: (adInfo: tradplus.AdInfo) => {
-        this.console.log('onAdLoaded, adInfo:', adInfo);
+      onAdLoaded: (adSourceName) => {
+        this.console.log('onAdLoaded, adSourceName:', adSourceName);
       },
 
-      onAdClicked: (adInfo: tradplus.AdInfo) => {
-        this.console.log('onAdClicked, adInfo:', adInfo);
+      onAdClicked: () => {
+        this.console.log('onAdClicked');
       },
 
       onAdLoadFailed: (adError: tradplus.AdError) => {
@@ -42,23 +42,18 @@ export class Banner extends Component {
       },
 
       // Android only
-      onAdImpression: (adInfo: tradplus.AdInfo) => {
-        this.console.log('onAdImpression, adInfo:', adInfo);
+      onAdImpression: () => {
+        this.console.log('onAdImpression');
       },
 
       // Android only
-      onAdShowFailed: (adError: tradplus.AdError, adInfo: tradplus.AdInfo) => {
-        this.console.log(
-          'onAdShowFailed, adError:',
-          adError,
-          'adInfo:',
-          adInfo
-        );
+      onAdShowFailed: (adError: tradplus.AdError) => {
+        this.console.log('onAdShowFailed, adError:', adError);
       },
 
       // Android only
-      onAdClosed: (adInfo: tradplus.AdInfo) => {
-        this.console.log('onAdClosed, adInfo:', adInfo);
+      onAdClosed: () => {
+        this.console.log('onAdClosed');
       },
 
       // Android only

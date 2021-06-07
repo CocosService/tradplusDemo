@@ -43,16 +43,16 @@ export class Interstitial extends Component {
         );
       },
 
-      onAdLoaded: (adInfo: tradplus.AdInfo) => {
-        this.console.log('onAdLoaded, adInfo:', adInfo);
+      onAdLoaded: () => {
+        this.console.log('onAdLoaded');
       },
 
-      onAdClicked: (adInfo: tradplus.AdInfo) => {
-        this.console.log('onAdClicked, adInfo:', adInfo);
+      onAdClicked: () => {
+        this.console.log('onAdClicked');
       },
 
-      onAdImpression: (adInfo: tradplus.AdInfo) => {
-        this.console.log('onAdImpression, adInfo:', adInfo);
+      onAdImpression: (adSourceName: string) => {
+        this.console.log('onAdImpression, adSourceName:', adSourceName);
       },
 
       onAdFailed: (adError: tradplus.AdError) => {
@@ -64,25 +64,25 @@ export class Interstitial extends Component {
         this.console.log('onAdPlayFailed, adError:', adError);
       },
 
-      onAdClosed: (adInfo: tradplus.AdInfo) => {
-        this.console.log('onAdClosed, adInfo:', adInfo);
+      onAdClosed: () => {
+        this.console.log('onAdClosed');
       },
 
       // Android only
-      oneLayerLoaded: (adInfo: tradplus.AdInfo) => {
-        this.console.log('oneLayerLoaded, adInfo:', adInfo);
+      onOneLayerLoaded: (adSourceName: string) => {
+        this.console.log('onOneLayerLoaded, adSourceName:', adSourceName);
       },
 
       // Android only
-      oneLayerLoadFailed: (
-        adError: tradplus.AdError,
-        adInfo: tradplus.AdInfo
+      onOneLayerLoadFailed: (
+        adSourceName: string,
+        adError: tradplus.AdError
       ) => {
         this.console.log(
-          'oneLayerLoadFailed, adError:',
-          adError,
-          'adInfo:',
-          adInfo
+          'onOneLayerLoadFailed, adSourceName:',
+          adSourceName,
+          'adError:',
+          adError
         );
       },
     });
