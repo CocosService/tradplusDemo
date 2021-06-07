@@ -1142,7 +1142,7 @@
     "_prefab": {
       "__id__": 65
     },
-    "_id": "12zjxmgsREtaDaBC9F4iZr"
+    "_id": "6dZjyUN9NPgaji+9t4qOxZ"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -1159,7 +1159,7 @@
   },
   {
     "__type__": "cc.PrefabInstance",
-    "fileId": "958dFjD+VNrpoTvXYJiz6G",
+    "fileId": "59g3UqR31BbYrM6cNjxIXq",
     "mountedChildren": [],
     "propertyOverrides": [
       {
@@ -1431,6 +1431,7 @@
     },
     "_enabled": true,
     "__prefab": null,
+    "console": null,
     "_id": "50KFuH73FH253HmmyjJKsc"
   },
   {
