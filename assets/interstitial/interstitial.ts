@@ -29,10 +29,9 @@ export class Interstitial extends Component {
       user_level: '10',
     };
 
-    // App Scope, for all placement.
+    // App level, for all placements.
     // tradplus.tradPlusService.initCustomMap(customMap);
-    // Only for the specify placement, override the App scope's one.
-    // NOTE: Currently, this API only work on Android.
+    // Only for the specify placement, override the App level one.
     tradplus.tradPlusService.initPlacementCustomMap(adUnitId, customMap);
 
     this.interstitial.setAdListener({

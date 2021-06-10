@@ -41,7 +41,6 @@ export class Banner extends Component {
         this.console.log('onAdLoadFailed, adError:', adError);
       },
 
-      // Android only
       onAdImpression: () => {
         this.console.log('onAdImpression');
       },
