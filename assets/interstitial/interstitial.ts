@@ -35,7 +35,7 @@ export class Interstitial extends Component {
     tradplus.tradPlusService.initPlacementCustomMap(adUnitId, customMap);
 
     this.interstitial.setAdListener({
-      onAdAllLoaded: (anyAdsLoadSucceeded: boolean) => {
+      onAdAllLoaded: (anyAdsLoadSucceeded) => {
         this.console.log(
           'onAdAllLoaded, anyAdsLoadSucceeded:',
           anyAdsLoadSucceeded
@@ -50,16 +50,16 @@ export class Interstitial extends Component {
         this.console.log('onAdClicked');
       },
 
-      onAdImpression: (adSourceName: string) => {
+      onAdImpression: (adSourceName) => {
         this.console.log('onAdImpression, adSourceName:', adSourceName);
       },
 
-      onAdFailed: (adError: tradplus.AdError) => {
+      onAdFailed: (adError) => {
         this.console.log('onAdFailed, adError:', adError);
       },
 
       // iOS only
-      onAdPlayFailed: (adError: tradplus.AdError) => {
+      onAdPlayFailed: (adError) => {
         this.console.log('onAdPlayFailed, adError:', adError);
       },
 
@@ -68,15 +68,12 @@ export class Interstitial extends Component {
       },
 
       // Android only
-      onOneLayerLoaded: (adSourceName: string) => {
+      onOneLayerLoaded: (adSourceName) => {
         this.console.log('onOneLayerLoaded, adSourceName:', adSourceName);
       },
 
       // Android only
-      onOneLayerLoadFailed: (
-        adSourceName: string,
-        adError: tradplus.AdError
-      ) => {
+      onOneLayerLoadFailed: (adSourceName, adError) => {
         this.console.log(
           'onOneLayerLoadFailed, adSourceName:',
           adSourceName,

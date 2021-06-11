@@ -37,7 +37,7 @@ export class Banner extends Component {
         this.console.log('onAdClicked');
       },
 
-      onAdLoadFailed: (adError: tradplus.AdError) => {
+      onAdLoadFailed: (adError) => {
         this.console.log('onAdLoadFailed, adError:', adError);
       },
 
@@ -46,7 +46,7 @@ export class Banner extends Component {
       },
 
       // Android only
-      onAdShowFailed: (adError: tradplus.AdError) => {
+      onAdShowFailed: (adError) => {
         this.console.log('onAdShowFailed, adError:', adError);
       },
 
