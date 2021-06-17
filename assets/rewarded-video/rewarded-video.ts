@@ -22,7 +22,7 @@ export class RewardedVideo extends Component {
       true
     );
 
-    // this.rewardedVideo.entryAdScenario('177010A4403105');
+    this.rewardedVideo.entryAdScenario('177010A4403105');
 
     const customMap = {
       user_gender: 'male',

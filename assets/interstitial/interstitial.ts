@@ -22,7 +22,7 @@ export class Interstitial extends Component {
       true
     );
 
-    // this.interstitial.entryAdScenario('01EAD2CCED1870');
+    this.interstitial.entryAdScenario('01EAD2CCED1870');
 
     const customMap = {
       user_gender: 'male',
