@@ -1,14 +1,14 @@
 {
   "title": "tradplusDemoCreator2",
   "packageName": "org.cocos2d.demo",
-  "startScene": "",
+  "startScene": "8a0a580b-ebf2-4058-ae39-080806207610",
   "excludeScenes": [],
   "includeSDKBox": false,
   "orientation": {
-    "landscapeLeft": true,
-    "landscapeRight": true,
-    "portrait": false,
-    "upsideDown": false
+    "landscapeLeft": false,
+    "landscapeRight": false,
+    "portrait": true,
+    "upsideDown": true
   },
   "webOrientation": "auto",
   "inlineSpriteFrames": true,

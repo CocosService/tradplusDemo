@@ -26,5 +26,5 @@ node_modules/
 #//////////////////////////
 # Emacs
 #//////////////////////////
-/.dir-locals-2.el
-/.log/
+.dir-locals-2.el
+.log/
