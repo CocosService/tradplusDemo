@@ -14,7 +14,7 @@ export class Banner extends Component {
   loadAd() {
     if (this.banner) {
       this.console.log('Banner Ad already exists, reload Ad in new position');
-      if (this.lastAdPosition == 'top') this.lastAdPosition = 'bottom';
+      if (this.lastAdPosition === 'top') this.lastAdPosition = 'bottom';
       else this.lastAdPosition = 'top';
       this.banner.loadAd(this.lastAdPosition);
       return;
