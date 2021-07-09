@@ -19,8 +19,8 @@ cc.Class({
     this.console.log('Load Ad');
 
     const adUnitId = isAndroid()
-      ? '18AFB0C3F2FA14F890ABFF8E7835BA03'
-      : '83B7E8A06DCEBD0841800CF44E19D32F';
+      ? 'A24091715B4FCD50C0F2039A5AF7C4BB'
+      : '6008C47DF1201CC875F2044E88FCD287';
 
     this.banner = tradplus.tradPlusService.getBanner(adUnitId);
 
