@@ -1,20 +1,16 @@
-import { _decorator, Component } from 'cc';
-import { isAndroid } from '../libs/os';
-import { Console } from '../prefabs/console';
-const { ccclass, property } = _decorator;
+const { isAndroid } = require('../libs/os');
 
-@ccclass('Banner')
-export class Banner extends Component {
-  @property({ type: Console })
-  console: Console = null!;
+cc.Class({
+  extends: cc.Component,
 
-  private banner: tradplus.Banner | null = null;
-  private lastAdPosition: 'top' | 'bottom' = 'top';
+  properties: {
+    console: require('console'),
+  },
 
   loadAd() {
     if (this.banner) {
       this.console.log('Banner Ad already exists, reload Ad in new position');
-      if (this.lastAdPosition == 'top') this.lastAdPosition = 'bottom';
+      if (this.lastAdPosition === 'top') this.lastAdPosition = 'bottom';
       else this.lastAdPosition = 'top';
       this.banner.loadAd(this.lastAdPosition);
       return;
@@ -62,7 +58,7 @@ export class Banner extends Component {
     });
 
     this.banner.loadAd(this.lastAdPosition);
-  }
+  },
 
   hideBanner() {
     if (!this.ensureBanner()) return;
@@ -70,7 +66,7 @@ export class Banner extends Component {
 
     this.console.log('Hide Banner');
     this.banner.setVisibility(false);
-  }
+  },
 
   showBanner() {
     if (!this.ensureBanner()) return;
@@ -78,7 +74,7 @@ export class Banner extends Component {
 
     this.console.log('Show Banner');
     this.banner.setVisibility(true);
-  }
+  },
 
   destroyAd() {
     if (!this.ensureBanner()) return;
@@ -87,17 +83,17 @@ export class Banner extends Component {
     this.console.log('Destroy Ad');
     this.banner.destroyAd();
     this.banner = null;
-  }
+  },
 
-  ensureBanner(): boolean {
+  ensureBanner() {
     if (!this.banner) {
       this.console.log('Please press the "Load Ad" button first');
       return false;
     }
     return true;
-  }
+  },
 
   onDestroy() {
-    this.banner?.destroyAd();
-  }
-}
+    if (this.banner) this.banner.destroyAd();
+  },
+});
